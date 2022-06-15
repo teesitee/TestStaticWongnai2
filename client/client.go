@@ -36,5 +36,5 @@ func (g GetURL) GetHttp() (map[string]int, Age) {
 		log.Fatalf("Cannot Unmarshal %s", err3)
 	}
 
-	return g.ProvinceRepo(), g.AgeRepo()
+	return g.ProvinceService(), g.AgeService()
 }

@@ -1,6 +1,6 @@
 package client
 
-func (GetURL) ProvinceRepo() map[string]int {
+func (GetURL) ProvinceService() map[string]int {
 	Provinces := make(map[string]int)
 
 	for _, item := range ClientInfo.List {
@@ -24,7 +24,7 @@ type Age struct {
 	AgeNA     int `json:"N/A"`
 }
 
-func (GetURL) AgeRepo() Age {
+func (GetURL) AgeService() Age {
 	AgeGroup := Age{
 		Age0to30:  0,
 		Age31to60: 0,
