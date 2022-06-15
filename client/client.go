@@ -3,12 +3,11 @@ package client
 import (
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
-	"teststaticwongnai2/service"
 )
 
 type GetURL struct {
-	Repo service.ServiceRepo
 }
 
 type Getinfo struct {
@@ -22,17 +21,20 @@ type GetinfoList struct {
 
 var ClientInfo GetinfoList
 
-func (g GetURL) GetHttp() (map[string]int, service.Age) {
+func (g GetURL) GetHttp() (map[string]int, Age) {
 
 	resp, err := http.Get("http://static.wongnai.com/devinterview/covid-cases.json")
 	if err != nil {
-		panic("Cannot GetInfo")
+		log.Fatalf("Cannot GetHttp %s", err)
 	}
-	bodybyte, err := io.ReadAll(resp.Body)
-	err2 := json.Unmarshal(bodybyte, &ClientInfo)
+	bodybyte, err2 := io.ReadAll(resp.Body)
 	if err2 != nil {
-		panic("Cannot Unmarshal")
+		log.Fatalf("Cannot ReadAll %s", err2)
+	}
+	err3 := json.Unmarshal(bodybyte, &ClientInfo)
+	if err3 != nil {
+		log.Fatalf("Cannot Unmarshal %s", err3)
 	}
 
-	return g.Repo.ProvinceRepo(ClientInfo), g.Repo.AgeRepo(ClientInfo)
+	return g.ProvinceRepo(), g.AgeRepo()
 }
