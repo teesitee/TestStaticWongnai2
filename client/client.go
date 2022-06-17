@@ -21,6 +21,9 @@ type GetinfoList struct {
 
 var ClientInfo GetinfoList
 
+var PvS map[string]int
+var AgS Age
+
 func (g GetURL) GetHttp() (map[string]int, Age) {
 
 	resp, err := http.Get("http://static.wongnai.com/devinterview/covid-cases.json")
@@ -35,6 +38,7 @@ func (g GetURL) GetHttp() (map[string]int, Age) {
 	if err3 != nil {
 		log.Fatalf("Cannot Unmarshal %s", err3)
 	}
-
-	return g.ProvinceService(), g.AgeService()
+	PvS = g.ProvinceService()
+	AgS = g.AgeService()
+	return PvS, AgS
 }

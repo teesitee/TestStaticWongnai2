@@ -7,8 +7,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//go:generate mockgen -source=./api.go -destination=./mock_api/mock_api.go -package=mockapi_test
+type HandlerMock interface {
+	GetHttp() (map[string]int, client.Age)
+}
+
 type Handler struct {
-	Serv client.GetURL
+	Serv HandlerMock
 }
 
 func (h Handler) GetRespone(c *gin.Context) {
