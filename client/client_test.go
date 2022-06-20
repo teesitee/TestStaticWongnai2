@@ -1,29 +1,35 @@
 package client
 
 import (
-	"reflect"
+	"fmt"
 	"testing"
 )
 
 func TestGetURL_GetHttp(t *testing.T) {
+	g := GetURL{}
 
-	tests := []struct {
-		name  string
-		g     GetURL
-		want  map[string]int
-		want1 Age
-	}{
-		{"TestGetHttp", GetURL{}, PvS, AgS},
+	type Getinfo struct {
+		Province string
+		Age      int
 	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			got, got1 := tt.g.GetHttp()
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("GetURL.GetHttp() got = %v, want %v", got, tt.want)
-			}
-			if !reflect.DeepEqual(got1, tt.want1) {
-				t.Errorf("GetURL.GetHttp() got1 = %v, want %v", got1, tt.want1)
-			}
-		})
+
+	type GetinfoList struct {
+		List []Getinfo
 	}
+
+	ClientInfo := GetinfoList{[]Getinfo{
+		{Province: "Test1", Age: 1},
+		{Province: "Test2", Age: 2},
+		{Province: "Test1", Age: 3},
+	},
+	}
+	fmt.Println(ClientInfo)
+	PvS := g.ProvinceService()
+
+	// AgS := g.AgeService()
+
+	if PvS != nil {
+		t.Errorf("got %v ,want %v", PvS, nil)
+	}
+
 }
