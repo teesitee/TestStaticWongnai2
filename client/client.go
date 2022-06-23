@@ -39,10 +39,12 @@ func (g GetURL) GetHttp() (map[string]int, Age) {
 	if err3 != nil {
 		log.Fatalf("Cannot Unmarshal %s", err3)
 	}
-	// fmt.Printf("Test Print : %+v", ClientInfo)
-	PvS = g.ProvinceService()
+	// fmt.Printf("Test Print : %+v\n", ClientInfo)
+
+	PvS = g.ProvinceService(ClientInfo)
 	AgS = g.AgeService()
 	fmt.Printf("PvS : %+v \n", PvS)
 	fmt.Printf("AgS : %+v \n", AgS)
+
 	return PvS, AgS
 }

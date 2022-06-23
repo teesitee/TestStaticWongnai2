@@ -1,9 +1,9 @@
 package client
 
-func (GetURL) ProvinceService() map[string]int {
+func (GetURL) ProvinceService(getifL GetinfoList) map[string]int {
 	Provinces := make(map[string]int)
 
-	for _, item := range ClientInfo.List {
+	for _, item := range getifL.List {
 		// check if the item/element exist in the duplicate_frequency map
 
 		_, exist := Provinces[item.Province]
@@ -14,6 +14,7 @@ func (GetURL) ProvinceService() map[string]int {
 			Provinces[item.Province] = 1 // else start counting from 1
 		}
 	}
+
 	return Provinces
 }
 

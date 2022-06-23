@@ -5,31 +5,24 @@ import (
 	"testing"
 )
 
+var P map[string]int
+
 func TestGetURL_GetHttp(t *testing.T) {
 	g := GetURL{}
 
-	type Getinfo struct {
-		Province string
-		Age      int
-	}
-
-	type GetinfoList struct {
-		List []Getinfo
-	}
-
-	ClientInfo := GetinfoList{[]Getinfo{
+	testClientInfo := GetinfoList{[]Getinfo{
 		{Province: "Test1", Age: 1},
 		{Province: "Test2", Age: 2},
 		{Province: "Test1", Age: 3},
 	},
 	}
-	fmt.Println(ClientInfo)
-	PvS := g.ProvinceService()
 
-	// AgS := g.AgeService()
+	P = g.ProvinceService(testClientInfo)
 
-	if PvS != nil {
-		t.Errorf("got %v ,want %v", PvS, nil)
+	if len(P) == 0 {
+		t.Errorf("got %v ", P)
+	} else {
+		fmt.Println("Print test :", testClientInfo)
 	}
 
 }
