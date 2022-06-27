@@ -42,9 +42,9 @@ func (g GetURL) GetHttp() (map[string]int, Age) {
 	// fmt.Printf("Test Print : %+v\n", ClientInfo)
 
 	PvS = g.ProvinceService(ClientInfo)
-	AgS = g.AgeService()
-	fmt.Printf("PvS : %+v \n", PvS)
-	fmt.Printf("AgS : %+v \n", AgS)
+	AgS = g.AgeService(ClientInfo)
+	fmt.Printf("PvS : %v \n", PvS)
+	fmt.Printf("AgS : %v \n", AgS)
 
 	return PvS, AgS
 }

@@ -25,14 +25,14 @@ type Age struct {
 	AgeNA     int `json:"N/A"`
 }
 
-func (GetURL) AgeService() Age {
+func (GetURL) AgeService(getifL GetinfoList) Age {
 	AgeGroup := Age{
 		Age0to30:  0,
 		Age31to60: 0,
 		Age61up:   0,
 		AgeNA:     0,
 	}
-	for _, item := range ClientInfo.List {
+	for _, item := range getifL.List {
 		if item.Age > 60 {
 			AgeGroup.Age61up += 1
 		} else if item.Age > 30 {
